@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	nakama "github.com/challenge-league/nakama-go/v2"
 	"github.com/micro/cli/v2"
 	"github.com/micro/go-micro/v2/agent/command"
 	"github.com/micro/go-micro/v2/agent/input"
@@ -98,7 +99,7 @@ func TestBot(t *testing.T) {
 	}
 
 	commands := map[string]command.Command{
-		"^echo ": command.NewCommand("echo", "test usage", "test description", func(args ...string) ([]byte, error) {
+		"^echo ": command.NewCommand("echo", "test usage", "test description", func(nakamaCtx *nakama.Context, args ...string) ([]byte, error) {
 			return []byte(strings.Join(args[1:], " ")), nil
 		}),
 	}
